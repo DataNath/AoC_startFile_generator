@@ -13,16 +13,13 @@ def run_main(cookie):
     response.configure(state="normal")
 
     try:
-        message_last = response.get("end-2c", "end-1c")
-        if message_last and message_last != "\n":
-            response.insert("end", "\n")
         message = subprocess.run(
             ["python", "bundle/main.py", cookie], capture_output=True, text=True
         )
-        response.insert(ctk.END, "\n"+message.stdout.rstrip("\n"))
+        response.insert(ctk.END, message.stdout)
         response.see(ctk.END)
     except Exception as e:
-        response.insert(ctk.END, f"Error: {str(e)}\n")
+        response.insert(ctk.END, f"Error: {str(e)}")
 
     response.configure(state="disabled")
 
