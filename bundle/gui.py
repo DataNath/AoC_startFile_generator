@@ -1,20 +1,28 @@
-import customtkinter as ctk
-import sys
-import subprocess
-import threading
-
+import os, sys, subprocess, threading, customtkinter as ctk
 
 def init_new_thread():
     cookie = enter_cookie.get()
     threading.Thread(target=run_main, args=(cookie,)).start()
 
+if getattr(sys, "frozen", False):
+    bundle_dir = sys._MEIPASS
+else:
+    bundle_dir = os.path.abspath(".")
+
+def get_relative_path(relative_path):
+    return os.path.join(bundle_dir, relative_path)
 
 def run_main(cookie):
     response.configure(state="normal")
+    main_path = get_relative_path("main.py")
+    template_path = get_relative_path("template.yxmd")
+
+    if not os.path.exists(main_path):
+        print("main.py not found")
 
     try:
         message = subprocess.run(
-            ["python", "bundle/main.py", cookie], capture_output=True, text=True
+            ["python", main_path, template_path, cookie], capture_output=True, text=True
         )
         response.insert(ctk.END, message.stdout)
         response.see(ctk.END)
