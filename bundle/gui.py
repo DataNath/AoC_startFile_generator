@@ -31,27 +31,38 @@ def run_main(cookie):
 
     response.configure(state="disabled")
 
-
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("green")
 
 root = ctk.CTk()
-root.geometry("750x400")
+root.geometry("750x600")
 root.title("Alteryx Advent of Code start file generator")
 
 frame = ctk.CTkFrame(master=root)
 frame.pack(pady=10, padx=10, fill="both", expand=True)
 
-label = ctk.CTkLabel(
-    master=frame, text="Annual start file generator", font=("Aptos", 26)
+main_label = ctk.CTkLabel(
+    master=frame, text="Annual start file generator", font=("Aptos", 30)
 )
-label.pack(pady=12, padx=5)
+main_label.pack(pady=12, padx=5)
+
+info_label = ctk.CTkLabel(
+    master=frame,
+    text="Thanks for checking out this tool!\n\n"
+    "If you want to look at the information page on the Alteryx\n"
+    "website, or check out the source code for this app,\n"
+    "please use the buttons below. Happy solving!\n\n"
+    "- DataNath",
+    font=("Aptos", 18),
+)
+info_label.pack(pady=12, padx=10)
 
 enter_cookie = ctk.CTkEntry(
     master=frame,
     placeholder_text="Enter session cookie",
     height=30,
     width=300,
+    justify="center",
     font=("Aptos", 18),
     show="*",
 )
@@ -67,7 +78,9 @@ button = ctk.CTkButton(
 )
 button.pack(pady=12, padx=5)
 
-response = ctk.CTkTextbox(master=frame, state="disabled", height=200, width=500, font=("Aptos", 18))
+response = ctk.CTkTextbox(
+    master=frame, state="disabled", height=200, width=500, font=("Aptos", 18)
+)
 response.pack(pady=12, padx=5)
 
 root.mainloop()
