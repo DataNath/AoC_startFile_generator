@@ -4,3 +4,4 @@ testing*
 build
 dist
 *.spec
+.venv/
