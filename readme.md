@@ -14,4 +14,4 @@ There is a template.yxmd file within the bundle which is treated as such:
 
 Note: Given `year` is generated from today(), this app ought to be dynamic for future events.
 
-Download the latest version [here](https://github.com/DataNath/AoC_startFile_generator/releases/download/v1.0.0/AoC_startFile_gen.exe)!
+Download the latest version [here](https://github.com/DataNath/AoC_startFile_generator/releases/download/v1.0.0/AoC_startFile_gen.zip)!
