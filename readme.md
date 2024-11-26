@@ -1,4 +1,4 @@
-<h1>AoC_startFile_gen</h1>
+<h1>AoC start file generator</h1>
 <a id="readme-top"></a>
 
 ![App screenshot](./_docs/app.png)
@@ -87,5 +87,12 @@ If you need to report an issue or would like to request a new feature, click [he
 <h2>Connect:</h2>
 
 [LinkedIn](https://www.linkedin.com/in/nathan-purvis/) | [GitHub](https://github.com/DataNath) | [X/Twitter](https://x.com/DataNath) | [Alteryx community](https://community.alteryx.com/t5/user/viewprofilepage/user-id/307299)
+
+<h2>Releases:</h2>
+
+| Version | Date | Release notes |
+|-|-|-|
+| [v1.0.0](https://github.com/DataNath/AoC_startFile_generator/releases/tag/v1.0.0) | 24/11/2024 | Initial release |
+
 
 <p align="right">(<a href="#readme-top">Back to top</a>)</p>
