@@ -1,57 +1,161 @@
-# Install packages
-import os, sys, datetime as dt, shutil as sh
+import os, sys, threading, webbrowser, customtkinter as ctk, datetime as dt, shutil as sh
+
+def init_new_thread():
+    cookie = enter_cookie.get()
+    threading.Thread(target=run_main, args=(cookie,)).start()
 
 if getattr(sys, "frozen", False):
     bundle_dir = sys._MEIPASS
+    exe_dir = os.path.dirname(sys.executable)
 else:
     bundle_dir = os.path.abspath(".")
+    exe_dir = os.path.abspath(".")
 
 def get_relative_path(relative_path):
     return os.path.join(bundle_dir, relative_path)
 
-try:
-    # Set constants
-    year = dt.date.today().year
-    template_file = sys.argv[1]
-    year_dir = get_relative_path(f"./{year}")
+def return_output(message):
+    response.insert(ctk.END, message)
+    response.see(ctk.END)
 
-    # 1. Take user input for session cookie value
-    cookie = sys.argv[2]
+def run_main(cookie):
+    response.configure(state="normal")
+    template_path = get_relative_path("template.yxmd")
 
-    # Simple check for cookie length & existing directories
-    if len(cookie) != 128:
-        print("Invalid session cookie - expecting 128 characters.")
-        exit()
+    if not os.path.exists(template_path):
+        return_output("template.yxmd not found\n")
 
-    if os.path.exists(f"{year_dir}"):
-        print("Error: You already have start files for this year.")
-        exit()
+    try:
+        # Set constants
+        year = str(dt.date.today().year)
+        year_dir = os.path.join(exe_dir, year)
 
-    # 2. Generate year subdir at root
-    os.mkdir(f"{year_dir}")
-    print(f"Successfully created {year} directory!")
-    print("Creating days 1 to 25...")
+        # Simple check for cookie length & existing directories
+        if len(cookie) != 128:
+            return_output("Invalid session cookie - expecting 128 characters.\n")
+            sys.exit()
 
-    # 3. Generate subdirs within year for days 1-25
-    for i in range (1, 26):
-        dir_name = f"{year_dir}\\Day {i}"
-        file_name = f"{dir_name}\\Day {i}.yxmd"
+        if os.path.exists(year_dir):
+            return_output("Error: You already have start files for this year.\n")
+            sys.exit()
 
-        os.mkdir(dir_name)
-        sh.copy(template_file, file_name)
+        # 2. Generate year subdir at root
+        os.mkdir(year_dir)
+        return_output(f"Successfully created {year} directory!\n")
+        return_output("Creating days 1 to 25...\n")
 
-        with open(file_name, "r+") as file:
-            contents = file.read()
+        # 3. Generate subdirs within year for days 1-25
+        for i in range (1, 26):
+            dir_name = f"{year_dir}\\Day {i}"
+            file_name = f"{dir_name}\\Day {i}.yxmd"
 
-            contents = contents.replace("{session_cookie}", f"{cookie}")
-            contents = contents.replace("{year}", f"{year}")
-            contents = contents.replace("{day}", str(i))
+            os.mkdir(dir_name)
+            sh.copy(template_path, file_name)
 
-            file.seek(0)
-            file.write(contents)
-            file.truncate()
+            with open(file_name, "r+") as file:
+                contents = file.read()
 
-        print(f"Created directory and start file for day {i}.")
-    print("Done!")
-except Exception as e:
-    print(f"Error: {str(e)}\n")
+                contents = contents.replace("{session_cookie}", f"{cookie}")
+                contents = contents.replace("{year}", year)
+                contents = contents.replace("{day}", str(i))
+
+                file.seek(0)
+                file.write(contents)
+                file.truncate()
+
+            return_output(f"Created directory and start file for day {i}.\n")
+        return_output("Done!\n")
+
+    except Exception as e:
+        response.insert(ctk.END, f"Error: {str(e)}")
+
+    response.configure(state="disabled")
+
+def launch_alteryx():
+    webbrowser.open_new_tab("https://community.alteryx.com/t5/Alter-Nation/Advent-of-Code-2024/ba-p/1342296")
+
+def launch_github():
+    webbrowser.open_new_tab("https://github.com/DataNath/AoC_startFile_generator")
+
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("green")
+
+root = ctk.CTk()
+root.geometry("650x700")
+root.resizable(False, False)
+root.title("Alteryx Advent of Code start file generator")
+
+bg_colour = "#2b2b2b"
+
+frame = ctk.CTkFrame(master=root, fg_color=bg_colour)
+frame.pack(pady=10, padx=10, fill="both", expand=True)
+
+main_label = ctk.CTkLabel(
+    master=frame, text="Annual start file generator", font=("Aptos", 30)
+)
+main_label.pack(pady=12, padx=5)
+
+info_label = ctk.CTkLabel(
+    master=frame,
+    text="Thanks for checking out this tool!\n\n"
+    "If you want to look at the information page on the Alteryx\n"
+    "website, or check out the source code for this app,\n"
+    "please use the buttons below. Happy solving!\n\n"
+    "- DataNath",
+    font=("Aptos", 18),
+)
+info_label.pack(pady=12, padx=10)
+
+button_frame = ctk.CTkFrame(master=frame, height=30, width=320, fg_color=bg_colour)
+button_frame.pack(
+    pady=10,
+    padx=10,
+    anchor="center")
+
+alteryx_button = ctk.CTkButton(
+    master=button_frame,
+    text="Additional info",
+    height=30,
+    width=150,
+    font=("Aptos", 18),
+    command=launch_alteryx
+)
+alteryx_button.pack(side="left", padx=5)
+
+github_button = ctk.CTkButton(
+    master=button_frame,
+    text="GitHub repo",
+    height=30,
+    width=150,
+    font=("Aptos", 18),
+    command=launch_github
+)
+github_button.pack(side="right", padx=5)
+
+enter_cookie = ctk.CTkEntry(
+    master=frame,
+    placeholder_text="Enter session cookie",
+    height=30,
+    width=310,
+    justify="center",
+    font=("Aptos", 18),
+    show="*",
+)
+enter_cookie.pack(pady=12, padx=10)
+
+button = ctk.CTkButton(
+    master=frame,
+    text="Generate",
+    height=30,
+    width=150,
+    font=("Aptos", 18),
+    command=init_new_thread,
+)
+button.pack(pady=12, padx=5)
+
+response = ctk.CTkTextbox(
+    master=frame, state="disabled", height=400, width=500, font=("Aptos", 18)
+)
+response.pack(pady=12, padx=5)
+
+root.mainloop()
