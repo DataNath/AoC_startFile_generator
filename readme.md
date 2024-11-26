@@ -52,13 +52,19 @@ Year directory:
 
 ![Generated year](./_docs/generated_year.png)
 
-DayN directories:
+Day N directories:
 
 ![Generated days](./_docs/generated_days.png)
 
 Start files:
 
 ![Generated files](./_docs/generated_files.png)
+
+Within Alteryx:
+
+![Alteryx URL](./_docs/alteryx_url.png)
+>
+![Alteryx Donwload](./_docs/alteryx_cookie.png)
 
 </details>
 
