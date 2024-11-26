@@ -17,6 +17,7 @@ Download the latest version [here](https://github.com/DataNath/AoC_startFile_gen
 
 >
 To download the current release, simply click the link above.
+>
 **Note:** Browsers like Chrome may block the download. You can override these settings in most cases, as shown below. Of course, it is recommended to only do this if you trust the source & should be re-enabled after downloading.
 
 ![Chrome safe browsing](./_docs/chrome_safe_browsing.png)
@@ -38,7 +39,7 @@ To get your session cookie, head to the Advent of Code [website](https://advento
 
 ![Get session cookie](./_docs/get_session_cookie.png)
 
-**Important** Do not share this with others - this grants access to act as your account associated with the website!
+**Important:** Do not share this with others - this grants access to act as your account associated with the website!
 
 </details>
 
