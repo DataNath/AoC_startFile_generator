@@ -15,11 +15,12 @@ def get_relative_path(relative_path):
     return os.path.join(bundle_dir, relative_path)
 
 def return_output(message):
+    response.configure(state="normal")
     response.insert(ctk.END, message)
     response.see(ctk.END)
+    response.configure(state="disabled")
 
 def run_main(cookie):
-    response.configure(state="normal")
     template_path = get_relative_path("template.yxmd")
 
     if not os.path.exists(template_path):
@@ -69,8 +70,6 @@ def run_main(cookie):
     except Exception as e:
         response.insert(ctk.END, f"Error: {str(e)}")
 
-    response.configure(state="disabled")
-
 def launch_alteryx():
     webbrowser.open_new_tab("https://community.alteryx.com/t5/Alter-Nation/Advent-of-Code-2024/ba-p/1342296")
 
@@ -81,7 +80,7 @@ ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("green")
 
 root = ctk.CTk()
-root.geometry("650x700")
+root.geometry("650x600")
 root.resizable(False, False)
 root.title("Alteryx Advent of Code start file generator")
 
@@ -98,8 +97,8 @@ main_label.pack(pady=12, padx=5)
 info_label = ctk.CTkLabel(
     master=frame,
     text="Thanks for checking out this tool!\n\n"
-    "If you want to look at the information page on the Alteryx\n"
-    "website, or check out the source code for this app,\n"
+    "If you'd like to look over more information on the Alteryx\n"
+    "website, or explore the source code for this app,\n"
     "please use the buttons below. Happy solving!\n\n"
     "- DataNath",
     font=("Aptos", 18),
@@ -154,7 +153,7 @@ button = ctk.CTkButton(
 button.pack(pady=12, padx=5)
 
 response = ctk.CTkTextbox(
-    master=frame, state="disabled", height=400, width=500, font=("Aptos", 18)
+    master=frame, state="disabled", height=300, width=500, font=("Aptos", 18)
 )
 response.pack(pady=12, padx=5)
 
