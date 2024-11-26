@@ -1,11 +1,11 @@
-<h1 style="border-bottom: none;">AoC_startFile_gen</h1>
+<h1>AoC_startFile_gen</h1>
 <a id="readme-top"></a>
 
 ![App screenshot](./_docs/app.png)
 
 Download the latest version [here](https://github.com/DataNath/AoC_startFile_generator/releases/download/v1.0.0/AoC_startFile_gen.zip)!
 
-<h2 style="border-bottom: none;">What this file does:</h1>
+<h2>What this file does:</h1>
 
 1. Takes a user input for your [Advent of Code](https://adventofcode.com/) session cookie value
 2. Generates a year directory next to the .exe save location
