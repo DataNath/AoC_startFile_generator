@@ -86,9 +86,6 @@ If you need to report an issue or would like to request a new feature, click [he
 
 <h2>Connect:</h2>
 
-[LinkedIn](https://www.linkedin.com/in/nathan-purvis/)
-[GitHub](https://github.com/DataNath)
-[X/Twitter](https://x.com/DataNath)
-[Alteryx community](https://community.alteryx.com/t5/user/viewprofilepage/user-id/307299)
+[LinkedIn](https://www.linkedin.com/in/nathan-purvis/) | [GitHub](https://github.com/DataNath) | [X/Twitter](https://x.com/DataNath) | [Alteryx community](https://community.alteryx.com/t5/user/viewprofilepage/user-id/307299)
 
 <p align="right">(<a href="#readme-top">Back to top</a>)</p>
