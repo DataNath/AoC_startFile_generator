@@ -5,7 +5,7 @@
 
 Download the latest version [here](https://github.com/DataNath/AoC_startFile_generator/releases/download/v1.0.0/AoC_startFile_gen.zip)!
 
-<h2>What this file does:</h1>
+<h2>What this file does:</h2>
 
 1. Takes a user input for your [Advent of Code](https://adventofcode.com/) session cookie value
 2. Generates a year directory next to the .exe save location
@@ -80,5 +80,15 @@ There is a template.yxmd file within the bundle which is treated as such:
 Note: Given `year` is generated from today(), this app ought to be dynamic for future events!
 
 </details>
+
+>
+If you need to report an issue or would like to request a new feature, click [here](https://github.com/DataNath/AoC_startFile_generator/issues)!
+
+<h2>Connect:</h2>
+
+[LinkedIn](https://www.linkedin.com/in/nathan-purvis/)
+[GitHub](https://github.com/DataNath)
+[X/Twitter](https://x.com/DataNath)
+[Alteryx community](https://community.alteryx.com/t5/user/viewprofilepage/user-id/307299)
 
 <p align="right">(<a href="#readme-top">Back to top</a>)</p>
